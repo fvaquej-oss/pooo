@@ -1,0 +1,44 @@
+#entrada;::..
+#una lista de números con elementos repetidos
+#proceso..
+#recorrer la lista y guardar los elementos nuevos en un conjunto para no repetir y en una lista para mantener el orden original
+#salida:...
+#una lista con los elementos únicos en su orden de aparición original
+#Ejemplo de entrada
+
+#[3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
+#Salida esperada;..
+
+#[3, 1, 4, 5, 9, 2, 6]
+#--------------------------------------------------------------------------
+#En el cuaderno
+#lista = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
+
+#Un solo recorrido usando 'visto' (set) y 'resultado' (lista):
+
+#El 3 -> ¿Está en visto? No. Lo agrego a visto {3} y a resultado [3]
+#El 1 -> ¿Está en visto? No. Lo agrego a visto {3, 1} y a resultado [3, 1]
+#El 4 -> ¿Está en visto? No. Lo agrego a visto {3, 1, 4} y a resultado [3, 1, 4]
+#El 1 -> ¿Está en visto? Sí. Se ignora.
+#El 5 -> ¿Está en visto? No. Lo agrego a visto {3, 1, 4, 5} y a resultado [3, 1, 4, 5]
+#El 9 -> ¿Está en visto? No. Lo agrego a visto {3, 1, 4, 5, 9} y a resultado [3, 1, 4, 5, 9]
+#El 2 -> ¿Está en visto? No. Lo agrego a visto {3, 1, 4, 5, 9, 2} y a resultado [3, 1, 4, 5, 9, 2]
+#El 6 -> ¿Está en visto? No. Lo agrego a visto {3, 1, 4, 5, 9, 2, 6} y a resultado [3, 1, 4, 5, 9, 2, 6]
+#El 5 -> ¿Está en visto? Sí. Se ignora.
+#El 3 -> ¿Está en visto? Sí. Se ignora.
+#Al final retorno la lista 'resultado' que tiene los valores únicos ordenados.
+#----------------------------------------------------------------------------------
+def sin_duplicados(lista):
+    visto = set()
+    resultado = []
+    for x in lista:
+        if x not in visto:
+            visto.add(x)
+            resultado.append(x)
+    return resultado
+
+# Alternativa (Python 3.7+): dict.fromkeys mantiene orden
+def sin_duplicados_v2(lista):
+    return list(dict.fromkeys(lista))
+
+print(sin_duplicados([3, 1, 4, 1, 5, 9, 2, 6, 5, 3]))
