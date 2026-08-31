@@ -1,0 +1,41 @@
+#Entrada
+#una cadena de texto
+#Proceso
+#dividir en palabras, limpiar, contar cada aparición
+#Salida
+#un diccionario con palabras y frecuencias
+#Ejemplo de entrada
+"Python es genial. Python es potente. Python es simple."
+#Salida esperada
+{"python": 3, "es": 3, "genial": 1, "potente": 1, "simple": 1}
+#_--------------------------------------------------------------------
+#En el cuaderno
+#texto = "Python es genial. Python es potente. Python es simple."
+
+#Paso 1: paso a minúsculas
+#Paso 2: quito signos
+#Paso 3: divido por espacios
+ # palabras = ["python", "es", "genial", "python", "es", "potente", "python", "es", "simple"]
+#Paso 4: cuento
+ # "python" aparece 3 veces
+  #"es" aparece 3 vec
+#--------------------------------------------------------------
+def contar_unicas(texto):
+    # Normalizamos
+    texto = texto.lower()
+    for signo in ".,;:!?\"'()":
+        texto = texto.replace(signo, "")
+
+    # Contamos con dict
+    frecuencias = {}
+    for palabra in texto.split():
+        frecuencias[palabra] = frecuencias.get(palabra, 0) + 1
+
+    return frecuencias
+
+
+# Uso
+texto = "Python es genial. Python es potente. Python es simple."
+r = contar_unicas(texto)
+for palabra, cant in r.items():
+    print(f"{palabra}: {cant}")
