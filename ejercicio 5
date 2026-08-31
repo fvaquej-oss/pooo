@@ -1,0 +1,46 @@
+#entrada;::..
+#un operador (op) y dos números (a, b) pasados por teclado
+#proceso..
+#usar un diccionario para mapear los operadores a funciones lambda correspondientes y ejecutar la operación seleccionada
+#salida:...
+#el resultado de la operación matemática en pantalla
+#Ejemplo de entrada
+
+#op=+, a=8, b=3
+#Salida esperada;..
+
+#11
+#--------------------------------------------------------------------------
+#En el cuaderno
+#Diccionario 'operaciones' mapea: "+" -> suma, "-" -> resta, "*" -> multi, "/" -> div
+
+#Paso a paso de la ejecución:
+
+#Recibo operador: op = "+" -> ¿Está en operaciones? Sí.
+#Recibo números: a = 8.0, b = 3.0
+#Busco en el diccionario: operaciones["+"] nos da la función lambda a, b: a + b
+#Ejecuto la función: lambda 8.0, 3.0 -> 8.0 + 3.0 = 11.0
+#Si pongo "q", la condición 'if op == "q"' se cumple y el bucle termina con 'break'.
+#Al final se imprime el resultado obtenido de la función correspondiente.
+#----------------------------------------------------------------------------------
+def calculadora():
+    operaciones = {
+        "+": lambda a, b: a + b,
+        "-": lambda a, b: a - b,
+        "*": lambda a, b: a * b,
+        "/": lambda a, b: a / b if b != 0 else None,
+    }
+
+    while True:
+        op = input("Operador (+ - * / o q para salir): ")
+        if op == "q":
+            break
+        if op not in operaciones:
+            print("Operador inválido"); continue
+
+        a = float(input("a: "))
+        b = float(input("b: "))
+        r = operaciones[op](a, b)
+        print(f"Resultado: {r}")
+
+calculadora()
