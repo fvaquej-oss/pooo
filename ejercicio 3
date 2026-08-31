@@ -1,0 +1,41 @@
+#entrada;::..
+#nombre de un archivo JSON y datos de configuración
+#proceso..
+#verificar si el archivo existe, leer los datos y guardar los cambios en formato JSON
+#salida:...
+#un diccionario con la configuración cargada o un archivo JSON actualizado
+#Ejemplo de entrada
+
+#cargar_config('config.json')
+#Salida esperada;..
+#{'tema': 'oscuro', 'idioma': 'es'}
+#--------------------------------------------------------
+#En el cuaderno
+#archivo = "config.json"
+
+#Lectura y Escritura:
+
+#Verificar: ¿Existe "config.json"? Si no existe, devuelve {}
+#Cargar: Si existe, lee el archivo JSON y lo convierte en un diccionario de Python
+#Modificar: Se agregan o cambian las claves ("tema" y "idioma") en el diccionario
+#Guardar: Se toma el diccionario y se escribe en el archivo con formato limpio (indent=2)
+#Al final el archivo queda guardado con los datos actualizados.
+#----------------------------------------------------------------------------------
+import json
+import os
+
+def guardar_config(datos, archivo):
+    with open(archivo, "w") as f:
+        json.dump(datos, f, indent=2)
+
+def cargar_config(archivo):
+    if not os.path.exists(archivo):
+        return {}
+    with open(archivo) as f:
+        return json.load(f)
+
+# Uso
+config = cargar_config("config.json")
+config["tema"] = "oscuro"
+config["idioma"] = "es"
+guardar_config(config, "config.json")
